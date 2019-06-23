@@ -112,7 +112,9 @@ $(function() {
         const feed = document.querySelector('.feed');
 
         beforeEach(function(done) {
-            loadFeed(0, done);
+            setTimeout(function() {
+                loadFeed(0, done);
+            }, 1000);
         });
 
         it('are loaded', function() {
@@ -120,12 +122,35 @@ $(function() {
         });
     });
 
+    /* DONE: Write a new test suite named "New Feed Selection" */
 
+    /* DONE: Write a test that ensures when a new feed is loaded
+    * by the loadFeed function that the content actually changes.
+    * Remember, loadFeed() is asynchronous.
+    */
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+        const feed = document.querySelector('.feed');
+        const feedOne = [];
+
+        beforeEach(function(done) {
+            setTimeout(function() {
+                loadFeed(0);
+                Array.from(feed.children).forEach(function(id) {
+                    feedOne.push(id.innerText);
+                });
+                //console.log(feed.children[0]);
+                loadFeed(1, done);
+            }, 1000);
+        });
+
+        it('updates the content of the feed',function() {
+            //console.log(feed.children[0]);
+            Array.from(feed.children).forEach(function(id, index) {
+                console.log(id.innerText, feedOne[index], id.innertext === feedOne[index]);
+                expect(id.innerText === feedOne[index]).toBe(false);
+            });
+        });
+    });
 }());
