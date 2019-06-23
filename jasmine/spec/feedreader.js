@@ -30,6 +30,10 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+         /* DONE: Write a test that loops through each feed
+          * in the allFeeds object and ensures it has a name defined
+          * and that the name is not empty.
+          */
 
         it('have defined URLs', function() {
             let url = '';
@@ -56,28 +60,48 @@ $(function() {
                 counter += 1;
             });
         });
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
-
     });
-
 
     /* TODO: Write a new test suite named "The menu" */
 
-        /* TODO: Write a test that ensures the menu element is
+        /* DONE: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
 
-         /* TODO: Write a test that ensures the menu changes
+         /* DONE: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+    describe('The menu', function() {
+
+        const body = document.querySelector('body');
+        const menu = document.querySelector('.menu-icon-link');
+
+        it('is hidden by default', function() {
+            expect(body.classList.contains('menu-hidden')).toBe(true);
+        });
+
+        it('opens when clicked once', function() {
+            menu.click();
+            expect(body.classList.contains('menu-hidden')).toBe(false);
+            menu.click();
+        });
+
+        it('closes when clicked twice', function() {
+            menu.click();
+            menu.click();
+            expect(body.classList.contains('menu-hidden')).toBe(true);
+        });
+
+    });
+
+
+
+
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
