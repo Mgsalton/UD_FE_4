@@ -132,25 +132,42 @@ $(function() {
     describe('New Feed Selection', function() {
 
         const feed = document.querySelector('.feed');
-        const feedOne = [];
+        let feedOne = [];
+        let feedTwo = [];
+
+        function feedOneArray() {
+            Array.from(feed.children).forEach(function(id) {
+                feedOne.push(id.innerText);
+                console.log('First array: ' + feedOne);
+            });
+        };
+
+        function feedTwoArray() {
+            Array.from(feed.children).forEach(function(id) {
+                feedTwo.push(id.innerText);
+                console.log('Second array: ' + feedTwo);
+            });
+        };
 
         beforeEach(function(done) {
             setTimeout(function() {
-                loadFeed(0);
-                Array.from(feed.children).forEach(function(id) {
-                    feedOne.push(id.innerText);
-                });
+                loadFeed(0, feedOneArray);
                 //console.log(feed.children[0]);
                 loadFeed(1, done);
             }, 1000);
         });
 
         it('updates the content of the feed',function() {
-            //console.log(feed.children[0]);
-            Array.from(feed.children).forEach(function(id, index) {
-                console.log(id.innerText, feedOne[index], id.innertext === feedOne[index]);
-                expect(id.innerText === feedOne[index]).toBe(false);
-            });
+            feedTwoArray();
+            let count = 0;
+            let boundary = feedTwo.length;
+            console.log('! Count length is : ' + boundary);
+
+            for (count = 0; count < boundary; count++ ) {
+                console.log('! Contents of first array: ' + feedOne[count]);
+                console.log('! Contents of second array: ' + feedTwo[count]);
+                expect(feedOne[count] === feedTwo[count]).toBe(false);
+            };
         });
     });
 }());
