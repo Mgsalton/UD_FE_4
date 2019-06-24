@@ -144,15 +144,21 @@ $(function() {
 
     describe('Initial Entries', function() {
 
+        const feed = document.querySelector('.feed');
+        let entryList = feed.children;
+        const entry = [];
+
         beforeEach(function(done) {
-            //setTimeout(function() {
-                loadFeed(0, done);
-            //}, 1000);
+            loadFeed(0, done);
         });
 
         it('are loaded', function() {
-            const entry = document.querySelectorAll('.entry');
-            //console.log('the number of entries are: ' + entry.length);
+            for (i = 0; i < entryList.length; i++) {
+                let identifyEntry = entryList[i].children;
+                //verify that entries are being detected...
+                //console.log(identifyEntry[0]);
+                entry.push(identifyEntry);
+            };
             expect(entry.length).toBeGreaterThan(0);
         });
     });
