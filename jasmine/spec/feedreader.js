@@ -206,8 +206,7 @@ $(function() {
             });
         };
 
-        // As above, except this function is called slightly later to prevent
-        // an async timeout in the beforeEach function.
+        // Same principle as above.
 
         function feedTwoArray() {
             Array.from(feed.children).forEach(function(id) {
@@ -216,19 +215,20 @@ $(function() {
             });
         };
 
-        // This section simulates asynchronous behaviour. It has a timeout
-        // function and leverages the 'done' callback to ensure that then
-        // interpreter doesn't go off on a tangent.
+        // This section simulates asynchronous behaviour.
 
         beforeEach(function(done) {
-            setTimeout(function() {
-                loadFeed(0, feedOneArray);
-                loadFeed(1, done);
-            }, 1000);
+            loadFeed(0, function() {
+                feedOneArray();
+                loadFeed(1, function() {
+                    feedTwoArray();
+                    done();
+                })
+            });
         });
 
         // feedOneArray is called from BeforeEach, while feedTwoArray is called
-        // from within the spec. Again, this was done to avoid an async timout.
+        // from within the spec.
 
         it('updates the content of the feed',function() {
             feedTwoArray();
@@ -243,7 +243,7 @@ $(function() {
             for (count = 0; count < boundary; count++ ) {
                 //console.log('! Contents of first array: ' + feedOne[count]);
                 //console.log('! Contents of second array: ' + feedTwo[count]);
-                expect(feedOne[count] === feedTwo[count]).toBe(false);
+                expect(feedOne[count]).not.toEqual(feedTwo[count]);
             };
         });
     });
