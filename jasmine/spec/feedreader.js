@@ -141,21 +141,19 @@ $(function() {
 
     // Since this code is asynchronous, we'll leverage beforeEach and the
     // 'done' callback to ensure the code executes fully before moving on.
-    // The setTimout function is also declared to simulate asynchronous
-    // behaviour
 
     describe('Initial Entries', function() {
 
-        const feed = document.querySelector('.feed');
-
         beforeEach(function(done) {
-            setTimeout(function() {
+            //setTimeout(function() {
                 loadFeed(0, done);
-            }, 1000);
+            //}, 1000);
         });
 
         it('are loaded', function() {
-            expect(feed.children.length).toBeGreaterThan(0);
+            const entry = document.querySelectorAll('.entry');
+            //console.log('the number of entries are: ' + entry.length);
+            expect(entry.length).toBeGreaterThan(0);
         });
     });
 
