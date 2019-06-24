@@ -144,22 +144,33 @@ $(function() {
 
     describe('Initial Entries', function() {
 
+        // const feed locates the feed class
+        // entryList defines the first child of the feed (entry-list)
+        // entry is an array that will be populated using the for loop below
+
         const feed = document.querySelector('.feed');
         let entryList = feed.children;
-        const entry = [];
+        let entryExists = false;
 
         beforeEach(function(done) {
             loadFeed(0, done);
         });
 
+        // This for loop iterates over the HTMLCollection of all entry-lists.
+        // During iteration, it captures the child of entry-lists (entry).
+        // If the 'entry' class name is detected, the entryExists boolean is set
+        // to true.
+
         it('are loaded', function() {
             for (i = 0; i < entryList.length; i++) {
                 let identifyEntry = entryList[i].children;
-                //verify that entries are being detected...
-                //console.log(identifyEntry[0]);
-                entry.push(identifyEntry);
+                    if (identifyEntry[0].className == 'entry') {
+                        entryExists = true;
+                    } else {
+                        entryExists = false;
+                    };
             };
-            expect(entry.length).toBeGreaterThan(0);
+            expect(entryExists).toBe(true);
         });
     });
 
