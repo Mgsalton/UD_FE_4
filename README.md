@@ -6,6 +6,7 @@
 * About this program
 * Instructions
 * Credits
+* Changelog
 
 ## About this program
 
@@ -29,4 +30,10 @@ This program uses Jasmine to perform automated tests on an HTML webpage. It will
 
 * The Jasmine documentation provided a good foundation to the in-and-outs of the module: https://jasmine.github.io/2.0/introduction.html#section-Spies
 * The Click() functionality was lifted from the following page: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click
+* A special thank you to the Udacity reviewer who provided constructive feedback
 * And finally... stackoverflow and its many contributors--where would we be without it or them?
+
+## Changelog
+
+* Modified the 'Initial Entries' suite
+* Modified the 'New Selection' suite
