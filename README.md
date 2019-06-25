@@ -35,5 +35,4 @@ This program uses Jasmine to perform automated tests on an HTML webpage. It will
 
 ## Changelog
 
-* Modified the 'Initial Entries' suite
-* Modified the 'New Selection' suite
+* Simplified the 'Initial Entries' suite
